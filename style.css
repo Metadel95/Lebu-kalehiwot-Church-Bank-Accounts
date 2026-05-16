@@ -1,0 +1,420 @@
+/* =============================================
+   Lebu Kale Heywet — Bank Accounts Page
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue-deep:    #124AAD;
+  --blue-main:    #154ABC;
+  --blue-light:   #E6F1FB;
+  --blue-mid:     #B5D4F4;
+  --blue-dark:    #0C447C;
+  --blue-darker:  #042C53;
+
+  --green-main:   #1D9E75;
+  --green-light:  #E1F5EE;
+  --green-dark:   #085041;
+
+  --text-primary:   #1a1a1a;
+  --text-secondary: #5a5a6a;
+  --text-muted:     #9595a5;
+
+  --bg-page:    #f5f6fa;
+  --bg-card:    #ffffff;
+  --bg-num:     #f0f4fc;
+
+  --border-light: rgba(20, 74, 173, 0.12);
+  --border-mid:   rgba(20, 74, 173, 0.25);
+
+  --radius-card: 16px;
+  --radius-num:  10px;
+  --radius-btn:  8px;
+
+  --shadow-card: 0 2px 12px rgba(18, 74, 173, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-hover: 0 8px 28px rgba(18, 74, 173, 0.14), 0 2px 6px rgba(0,0,0,0.06);
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ---- Layout ---- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.header {
+  background: linear-gradient(160deg, var(--blue-deeper, #0e3a8c) 0%, var(--blue-main) 60%, #1a5ac8 100%);
+  background: #124AAD;
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.logo-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.church-logo-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.church-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.church-identity {
+  text-align: left;
+}
+
+.church-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.church-name-am {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 2px;
+  font-weight: 300;
+}
+
+.page-description {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ---- Main ---- */
+.main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ---- Bank Section ---- */
+.bank-section {}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bank-logo {
+  height: 40px;
+  max-width: 160px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.bank-logo--cbe {
+  height: 44px;
+  max-width: 180px;
+}
+
+.bank-logo-fallback {
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-light);
+  border-radius: 8px;
+  padding: 6px 14px;
+}
+
+.bank-logo-text {
+  font-weight: 500;
+  color: var(--blue-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.bank-name-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ---- Accounts Grid ---- */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* ---- Account Card ---- */
+.account-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.account-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-mid);
+  transform: translateY(-2px);
+}
+
+.account-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.account-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--blue-light);
+  color: var(--blue-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-icon--cbe {
+  background: var(--green-light);
+  color: var(--green-main);
+}
+
+.account-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.account-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+/* ---- Account Number Row ---- */
+.account-number-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--bg-num);
+  border-radius: var(--radius-num);
+  padding: 0.875rem 1rem;
+}
+
+.account-number {
+  font-family: 'DM Sans', 'SF Mono', 'Courier New', monospace;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--blue-deep);
+  user-select: all;
+}
+
+.account-card--cbe .account-number {
+  color: var(--green-dark);
+}
+
+/* ---- Copy Button ---- */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: transparent;
+  border: 1.5px solid var(--blue-main);
+  color: var(--blue-main);
+  border-radius: var(--radius-btn);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: var(--blue-light);
+}
+
+.copy-btn:active {
+  transform: scale(0.96);
+}
+
+.copy-btn.copied {
+  border-color: var(--green-main);
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+.copy-btn--cbe {
+  border-color: var(--green-main);
+  color: var(--green-dark);
+}
+
+.copy-btn--cbe:hover {
+  background: var(--green-light);
+}
+
+.copy-btn--cbe.copied {
+  border-color: var(--green-main);
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+/* ---- Footer ---- */
+.footer {
+  border-top: 1px solid var(--border-light);
+  padding: 1.5rem 1.25rem;
+  background: #ffffff;
+}
+
+.footer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.footer-inner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .header {
+    padding: 2rem 1.25rem 2rem;
+  }
+
+  .logo-lockup {
+    flex-direction: column;
+    gap: 0.875rem;
+    text-align: center;
+  }
+
+  .church-identity {
+    text-align: center;
+  }
+
+  .church-name {
+    font-size: 1.4rem;
+  }
+
+  .main {
+    padding: 1.75rem 1rem 1.5rem;
+  }
+
+  .account-number {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .bank-name-label {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .account-number-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .copy-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
