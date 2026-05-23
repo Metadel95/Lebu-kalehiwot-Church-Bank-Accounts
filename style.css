@@ -182,6 +182,8 @@ body {
 .bank-logo--cbe {
   height: 44px;
   max-width: 250px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .bank-logo-fallback {
