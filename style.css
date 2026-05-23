@@ -180,8 +180,8 @@ body {
 }
 
 .bank-logo--cbe {
-  height: 44px;
-  max-width: 250px;
+  height: 56px;
+  max-width: 200px;
   object-fit: contain;
   object-position: left center;
 }
